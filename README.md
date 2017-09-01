@@ -18,6 +18,7 @@ $ npm run build
 
 ```
 $ npm run test
+$ npm run test:watch
 ```
 
 Thank you for your suggestions!
