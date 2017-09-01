@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { classNamePrefix } from '../configs'
-import './style.css'
+import '../css/style.css'
 
-export default class App extends Component {
+export default class ReactComponent extends Component {
   render() {
     return (
       <div className={classNamePrefix}>
