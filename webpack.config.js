@@ -1,6 +1,9 @@
+const config = require('./configs')
+const path = require('path')
+
 module.exports = {
   devtool: 'eval',
-  entry: ['babel-polyfill', './src/app.js'],
+  entry: ['babel-polyfill', './dev/index.js'],
   output: {
     publicPath: '',
     filename: 'bundle.js'
@@ -30,7 +33,10 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: ['node_modules', 'src'],
+    alias: {
+      [config.name]: path.join(__dirname, 'src')
+    },
+    modules: ['node_modules', 'src', 'dev'],
     extensions: ['.js', '.jsx']
   }
 }

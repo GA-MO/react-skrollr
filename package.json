@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --hot --inline",
-    "test": "npm run lint && mocha ./src/**/*.test.js --compilers js:babel-register",
-    "test:watch": "mocha ./src/**/*.test.js --compilers js:babel-register --watch",
+    "test": "npm run lint && mocha ./test/**/*.test.js --compilers js:babel-register",
+    "test:watch": "mocha ./test/**/*.test.js --compilers js:babel-register --watch",
     "lint": "eslint ./src",
     "clean": "rimraf lib",
     "build": "npm run clean && babel src --out-dir lib",
