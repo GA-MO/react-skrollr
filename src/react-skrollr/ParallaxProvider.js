@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import skrollr from 'skrollr'
 
-export default class Parellax extends React.Component {
+export default class ParallaxProvider extends React.Component {
   static propTypes = {
     init: PropTypes.object,
-    getScrollTop: PropTypes.func,
-    children: PropTypes.node.isRequired
+    getScrollTop: PropTypes.func
   }
 
   static defaultProps = {

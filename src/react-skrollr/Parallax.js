@@ -8,6 +8,10 @@ export default class Parallax extends React.Component {
     this.context.refresh()
   }
 
+  componentWillReceiveProps() {
+    this.context.refresh()
+  }
+
   render() {
     const { data, children } = this.props
     return <div {...data}>{children}</div>
