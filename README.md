@@ -31,7 +31,8 @@ class App extends React.Component {
       <ParallaxProvider
         init={{
           smoothScrollingDuration: 500,
-          smoothScrolling: true
+          smoothScrolling: true,
+          forceHeight: false
         }}
       >
       ...
