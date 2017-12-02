@@ -1,6 +1,6 @@
 {
   "name": "react-skrollr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Component parallax scrolling JavaScript library base on Skrollr",
   "main": "lib/index.js",
   "author": "[GAMO] Thawatchai Kuansombat (thawatchai.deartk@gmail.com)",
@@ -40,7 +40,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "serve": "serve -s build",
-    "build-lib": "babel ./src/react-skrollr --out-dir ../lib",
+    "build-lib": "babel ./src/react-skrollr --out-dir lib",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
