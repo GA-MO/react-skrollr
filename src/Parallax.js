@@ -5,7 +5,7 @@ export default class Parellax extends React.Component {
   static contextTypes = { refresh: PropTypes.func }
 
   componentDidMount() {
-    this.context.refresh()
+    if (typeof this.context.refresh === 'function') this.context.refresh()
   }
 
   render() {

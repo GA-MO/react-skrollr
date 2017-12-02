@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import skrollr from 'skrollr'
+// import skrollr from 'skrollr'
+const skrollr = typeof window !== 'undefined' ? require('skrollr') : undefined;
 
-export default class Parellax extends React.Component {
+export default class Parallax extends React.Component {
   static propTypes = {
     init: PropTypes.object,
-    getScrollTop: PropTypes.func
+    getScrollTop: PropTypes.func,
+    children: PropTypes.node.isRequired,
   }
 
   static defaultProps = {
     init: {},
-    getScrollTop: () => null
+    getScrollTop: () => null,
   }
 
   componentWillMount() {
@@ -25,7 +27,7 @@ export default class Parellax extends React.Component {
     window.addEventListener('scroll', this.getScrollTop)
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.getScrollTop)
     this.skrollr.destroy()
   }
@@ -35,7 +37,7 @@ export default class Parellax extends React.Component {
   }
 
   getChildContext() {
-    return { refresh: this.skrollr.refresh }
+    return { refresh: typeof window !== 'undefined' ? this.skrollr.refresh : undefined }
   }
 
   render() {
