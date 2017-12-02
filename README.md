@@ -3,7 +3,7 @@
 
 React Component parallax scrolling JavaScript library base on [*Skrollr*](<https://github.com/Prinzhorn/skrollr>)
 
-See [*live demo*](<https://github.com/Prinzhorn/skrollr>)
+See [*live demo*](<http://react-skrollr-demo.surge.sh>)
 
 
 
