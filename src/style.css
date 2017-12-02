@@ -1,0 +1,22 @@
+body {
+  font-family: 'Arial';
+  text-align: center;
+  background: #27c9ff;
+  color: #fff;
+}
+span {
+  height: 100px;
+  background: #fff;
+  color: #2fcaff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  font-weight: bold;
+}
