@@ -5,11 +5,13 @@ import skrollr from 'skrollr'
 export default class ParallaxProvider extends React.Component {
   static propTypes = {
     init: PropTypes.object,
-    getScrollTop: PropTypes.func
+    getScrollTop: PropTypes.func,
+    disableOnMobile: PropTypes.bool
   }
 
   static defaultProps = {
     init: {},
+    disableOnMobile: true,
     getScrollTop: () => null
   }
 
@@ -18,10 +20,16 @@ export default class ParallaxProvider extends React.Component {
   }
 
   initSkrollr() {
+    
     this.skrollr = skrollr.init(this.props.init)
+    
     this.setState({
       refresh: this.skrollr.refresh
     })
+
+    if (disableOnMobile && this.skrollr.isMobile()) {
+      this.skrollr.destroy();
+    }
   }
 
   getScrollTop = () => {
