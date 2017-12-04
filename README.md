@@ -23,7 +23,7 @@ Use init config via props `init` (props type is object)
 
 Skrollr init [*Options*](<https://github.com/Prinzhorn/skrollr#skrollrinitoptions>)
 
-Add `<ProviderParallax>` in to root app
+Add `ParallaxProvider` into root app
 ```js
 class App extends React.Component {
   render() {
@@ -36,7 +36,7 @@ class App extends React.Component {
         }}
       >
       ...
-      </ParallaxProvider>
+      </>
     )
   }
 }
