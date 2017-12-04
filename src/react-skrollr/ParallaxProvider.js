@@ -27,7 +27,7 @@ export default class ParallaxProvider extends React.Component {
       refresh: this.skrollr.refresh
     })
 
-    if (disableOnMobile && this.skrollr.isMobile()) {
+    if (this.props.disableOnMobile && this.skrollr.isMobile()) {
       this.skrollr.destroy();
     }
   }
