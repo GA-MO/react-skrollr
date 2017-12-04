@@ -19,7 +19,7 @@ export default class ParallaxProvider extends React.Component {
     refresh: () => null
   }
 
-  initSkrollr() {
+  initSkrollr = () => {
     
     this.skrollr = skrollr.init(this.props.init)
     
@@ -29,11 +29,16 @@ export default class ParallaxProvider extends React.Component {
 
     if (this.props.disableOnMobile && this.skrollr.isMobile()) {
       this.skrollr.destroy();
+      this.setState({
+        refresh: undefined,
+      })
     }
   }
 
   getScrollTop = () => {
-    this.props.getScrollTop(this.skrollr.getScrollTop())
+    if (this.skrollr && typeof this.skrollr.getScrollTop === 'function') {
+      this.props.getScrollTop(this.skrollr.getScrollTop())
+    }
   }
 
   componentDidMount() {
@@ -41,7 +46,7 @@ export default class ParallaxProvider extends React.Component {
     window.addEventListener('scroll', this.getScrollTop)
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener('scroll', this.getScrollTop)
     this.skrollr.destroy()
   }
