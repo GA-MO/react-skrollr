@@ -5,45 +5,54 @@ import skrollr from 'skrollr'
 export default class ParallaxProvider extends React.Component {
   static propTypes = {
     init: PropTypes.object,
-    getScrollTop: PropTypes.func,
     disableOnMobile: PropTypes.bool
   }
 
   static defaultProps = {
     init: {},
-    disableOnMobile: true,
-    getScrollTop: () => null
-  }
-
-  state = {
-    refresh: () => null
+    disableOnMobile: true
   }
 
   initSkrollr() {
-    
     this.skrollr = skrollr.init(this.props.init)
-    
-    this.setState({
-      refresh: this.skrollr.refresh
-    })
+  }
 
-    if (this.props.disableOnMobile && this.skrollr.isMobile()) {
-      this.skrollr.destroy();
+  refresh = () => {
+    if (this.skrollr) this.skrollr.refresh()
+  }
+
+  isMobile = () => {
+    return /Android|iPhone|iPad|iPod|BlackBerry/i.test(
+      navigator.userAgent || navigator.vendor || window.opera
+    )
+  }
+
+  shouldInitOrDestroy = () => {
+    const { disableOnMobile } = this.props
+    if (!disableOnMobile) {
+      this.initSkrollr()
+      return
+    }
+
+    if (disableOnMobile && this.isMobile() && this.skrollr !== undefined) {
+      this.skrollr.destroy()
+      this.skrollr = undefined
+    }
+
+    if (disableOnMobile && !this.isMobile() && this.skrollr === undefined) {
+      this.initSkrollr()
     }
   }
 
-  getScrollTop = () => {
-    this.props.getScrollTop(this.skrollr.getScrollTop())
-  }
-
   componentDidMount() {
-    this.initSkrollr()
-    window.addEventListener('scroll', this.getScrollTop)
+    window.addEventListener('load', this.shouldInitOrDestroy)
+    window.addEventListener('resize', this.shouldInitOrDestroy)
   }
 
   componentWillUnMount() {
-    window.removeEventListener('scroll', this.getScrollTop)
-    this.skrollr.destroy()
+    window.removeEventListener('load', this.shouldInitOrDestroy)
+    window.removeEventListener('resize', this.shouldInitOrDestroy)
+    if (this.skrollr) this.skrollr.destroy()
   }
 
   static childContextTypes = {
@@ -51,11 +60,11 @@ export default class ParallaxProvider extends React.Component {
   }
 
   getChildContext() {
-    return { refresh: this.state.refresh }
+    return { refresh: this.refresh }
   }
 
   render() {
     const { children } = this.props
-    return <div>{children}</div>
+    return <div id='skrollr-body'>{children}</div>
   }
 }
