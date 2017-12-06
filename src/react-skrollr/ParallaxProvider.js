@@ -49,7 +49,7 @@ export default class ParallaxProvider extends React.Component {
     window.addEventListener('resize', this.shouldInitOrDestroy)
   }
 
-  componentWillUnount() {
+  componentWillUnmount() {
     window.removeEventListener('load', this.shouldInitOrDestroy)
     window.removeEventListener('resize', this.shouldInitOrDestroy)
     if (this.skrollr) this.skrollr.destroy()
