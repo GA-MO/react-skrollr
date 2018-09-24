@@ -13,7 +13,8 @@ export default class Parallax extends React.Component {
   }
 
   render() {
-    const { data, children } = this.props
-    return <div {...data}>{children}</div>
+    const { data, tag, children } = this.props
+    const Tag = !tag ? 'div' : tag;
+    return <Tag {...data}>{children}</Tag>
   }
 }
